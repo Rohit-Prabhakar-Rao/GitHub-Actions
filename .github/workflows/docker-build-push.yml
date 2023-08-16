@@ -15,6 +15,14 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Debug Docker Credentials
+        run: |
+          echo "DOCKER_USERNAME: $DOCKER_USERNAME"
+          echo "DOCKER_PASSWORD: $DOCKER_PASSWORD"
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and push Docker image
         id: docker_build
         uses: docker/build-push-action@v2
@@ -23,6 +31,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: flamekaiserr/my-python-app:latest
-          build-args: |
-            DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-            DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
