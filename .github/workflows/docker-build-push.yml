@@ -1,4 +1,3 @@
-# .github/workflows/docker-build-push.yml
 name: Build and Push Docker Image
 on:
   push:
@@ -24,7 +23,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: flamekaiserr/my-python-app:latest
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
+          build-args: |
+            DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+            DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
