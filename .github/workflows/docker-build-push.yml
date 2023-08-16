@@ -18,6 +18,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: your-docker-username/my-python-app:latest
+        tags: flamekaiserr/my-python-app:latest
         build-args: |
           VERSION=latest
